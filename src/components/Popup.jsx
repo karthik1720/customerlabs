@@ -1,11 +1,21 @@
+/*
+TODO:
+1. Empty value is getting added to the array when switching back to 'Add schema to segment' option   -   Fixed
+2. Code optimisation needs to be done
+3. function names needs to be updated
+4. Some CSS classnames needs to be changed
+5. Duplicate html elements needs to be removed
+6. Remove option
+*/
+
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import "../App.css";
 import axios from "axios";
 import CircleIcon from "@mui/icons-material/Circle";
 import Dropdown from "./Dropdown";
-
 import RemoveIcon from "@mui/icons-material/Remove";
+
 const dropdown = [
   { index: 1, label: "First Name", Value: "first_name" },
   { index: 2, label: "Last Name", Value: "last_name" },
@@ -16,6 +26,7 @@ const dropdown = [
   { index: 7, label: "State", Value: "state" },
 ];
 function Popup({ setLoad }) {
+  //TODO - change useState to useReducer for more readability
   const [valueSetter, setValueSetter] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [localfilterList, setLocafilterList] = useState(dropdown);
@@ -33,6 +44,7 @@ function Popup({ setLoad }) {
     setValueSetter({ label: label, Value: value });
   };
 
+  //TODO - code optimisation needed
   const handleDropChange = (e, index1) => {
     const index = e.nativeEvent.target.selectedIndex;
     const { value } = e.target;
@@ -46,7 +58,7 @@ function Popup({ setLoad }) {
     setDropCount(newArr);
     let newArr2 = [];
 
-    //test code - will change later
+    //TODO - code optimisation needed
     if (filterList[index1]) {
       newArr2 = [...filterList];
       newArr2[index1].value = value;
@@ -57,7 +69,7 @@ function Popup({ setLoad }) {
   };
 
   const addNewSchema = () => {
-    if (valueSetter.length < 1) {
+    if (valueSetter.Value === "" || valueSetter.Value === undefined) {
       setError((prev) => ({ ...prev, select: true }));
       return;
     }
@@ -67,7 +79,7 @@ function Popup({ setLoad }) {
       ...filterList,
       { value: valueSetter.Value, selectedBy: dropCount.length },
     ]);
-    setValueSetter("");
+    setValueSetter({});
   };
   useEffect(() => {
     setError({ inputRef: false, select: false });
@@ -94,6 +106,7 @@ function Popup({ setLoad }) {
     );
   };
 
+  //TODO - duplicate dropdown element needs to be removed.
   return (
     <div className="popContainer">
       <Navbar text="Saving Segment" />
@@ -143,7 +156,7 @@ function Popup({ setLoad }) {
               value={valueSetter.Value}
               onChange={(e) => handleDrop1Change(e)}
             >
-              <option id="1" label="Add schema to segment" />
+              <option label="Add schema to segment" />
               {localfilterList.map((opt) => (
                 <option
                   value={opt.Value}
