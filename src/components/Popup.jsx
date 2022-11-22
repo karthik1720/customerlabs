@@ -6,16 +6,16 @@ import CircleIcon from "@mui/icons-material/Circle";
 import Dropdown from "./Dropdown";
 
 import RemoveIcon from "@mui/icons-material/Remove";
+const dropdown = [
+  { index: 1, label: "First Name", Value: "first_name" },
+  { index: 2, label: "Last Name", Value: "last_name" },
+  { index: 3, label: "Gender", Value: "gender" },
+  { index: 4, label: "Age", Value: "age" },
+  { index: 5, label: "Account Name", Value: "account_name" },
+  { index: 6, label: "City", Value: "city" },
+  { index: 7, label: "State", Value: "state" },
+];
 function Popup({ setLoad }) {
-  const dropdown = [
-    { index: 1, label: "First Name", Value: "first_name" },
-    { index: 2, label: "Last Name", Value: "last_name" },
-    { index: 3, label: "Gender", Value: "gender" },
-    { index: 4, label: "Age", Value: "age" },
-    { index: 5, label: "Account Name", Value: "account_name" },
-    { index: 6, label: "City", Value: "city" },
-    { index: 7, label: "State", Value: "state" },
-  ];
   const [valueSetter, setValueSetter] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [localfilterList, setLocafilterList] = useState(dropdown);
